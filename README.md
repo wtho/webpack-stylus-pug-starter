@@ -11,7 +11,7 @@ Sometimes I just need a setup to develop web-design ideas very quickly. This set
 
 
 ## Getting Started
-Just run `npm run dev` and you're ready to go!
+Once `npm i` and then just `npm run dev` and you're ready to go!
 
 ## TODO
 Add `npm build` implementation in config to build clean html/css which would be deployable on static hosters like github pages
