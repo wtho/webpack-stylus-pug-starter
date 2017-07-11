@@ -1,6 +1,30 @@
 @import url('https://fonts.googleapis.com/css?family=Short+Stack');
 
+primary = #b3a2c8
+primaryText = #555
+containerWidth = 40em
+
 html 
   font-family: 'Short Stack', cursive
-  padding: 20px
-  color: #555
+  color: primaryText
+
+body
+  margin: 0
+  
+.top-bar
+  padding: .4em
+  background-color: primary
+  color: primaryText
+
+.container
+  width: containerWidth
+
+h1
+  margin: 0
+
+.body
+  margin 1em 0
+
+.top-bar, .body
+  display: flex
+  justify-content: center
