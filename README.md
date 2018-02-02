@@ -1,7 +1,7 @@
 # Webpack Stylus Pug Starter
-Simple Stylus Pug Webdesign Starter Pack. Driven by Webpack allowing Dev-Server with HMR.
+Sometimes I just need a setup to develop web-design ideas very quickly. This setup gives me the same developing experience as platforms like Codepen or jsfiddle, but is faster and enables me to use my favourite Text Editor.
 
-Sometimes I just need a setup to develop web-design ideas very quickly. This setup gives me the same developing experience as platforms like Codepen, but enables me to use my favourite Text Editor.
+Through webpack's hot module replacement CSS will be updated live, while the browser does not make a reload (if the HTML was not changed).
 
 <div>
 <a href="https://webpack.js.org"><img width="200" heigth="200" src="https://webpack.js.org/assets/icon-square-big.svg"></a>
@@ -11,7 +11,12 @@ Sometimes I just need a setup to develop web-design ideas very quickly. This set
 
 
 ## Getting Started
-Once `npm i` and then just `npm run dev` and you're ready to go!
+First `npm i` to install dependencies.
 
-## TODO
-Add `npm build` implementation in config to build clean html/css which would be deployable on static hosters like github pages
+Then just `npm run dev` and edit the files located in `src`.
+
+If you want to have the webpage in a single html-file, use `npm build`.
+
+## Disclaimer
+This setup is minimal and it might not suffice your requirements - feel free to extend it!
+

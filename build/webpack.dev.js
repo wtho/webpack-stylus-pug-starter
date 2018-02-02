@@ -1,25 +1,16 @@
-const config = require('./config')
-const webpack = require('webpack')
 const path = require('path')
+const webpack = require('webpack')
+const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
-module.exports = {
-  entry: ['./tools/dev-client.js', './main.js'],
-  output: {
-    filename: 'bundle.js',
-    path: '/'
-  },
+const config = require('../config')
+const webpackBaseConfig = require('./webpack.base')
+
+module.exports = merge(webpackBaseConfig, {
+  entry: ['./build/dev-client.js'],
   module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
-      },
-      {
+    rules: [{
         test: /\.styl$/,
         use: [
           'style-loader',
@@ -28,10 +19,11 @@ module.exports = {
         ]
       },
       {
-        test: /\.pug$/,
-        use: [
-          'pug-loader'
-        ]
+        test: /\.(jpe?g|png|gif)$/,
+        use: [{
+          loader: 'file-loader',
+          options: {}
+        }]
       }
     ]
   },
@@ -39,10 +31,10 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: config.pug,
+      filename: config.buildOptions.htmlFileName,
+      template: config.htmlInput,
       inject: true
     }),
     new FriendlyErrorsPlugin()
   ]
-}
+})

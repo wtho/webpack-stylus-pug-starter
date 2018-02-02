@@ -1,6 +1,6 @@
 var config = require('../config')
 var publicPath = '/'
-var staticFolder = 'static'
+var staticFolder = 'assets'
 
 if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = 'development'
@@ -9,7 +9,7 @@ if (!process.env.NODE_ENV) {
 var path = require('path')
 var express = require('express')
 var webpack = require('webpack')
-var webpackConfig = require('../webpack.config')
+var webpackConfig = require('../build/webpack.dev')
 
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.port || 8080
@@ -27,9 +27,14 @@ var hotMiddleware = require('webpack-hot-middleware')(compiler, {
   log: () => {}
 })
 // force page reload when html-webpack-plugin template changes
+let lastHtml = ''
 compiler.plugin('compilation', function (compilation) {
   compilation.plugin('html-webpack-plugin-after-emit', function (data, cb) {
-    hotMiddleware.publish({ action: 'reload' })
+    const newHtml = data.html.source()
+    if (lastHtml !== newHtml) {
+      hotMiddleware.publish({ action: 'reload' })
+    }
+    lastHtml = newHtml
     cb()
   })
 })
@@ -46,7 +51,7 @@ app.use(hotMiddleware)
 
 // serve pure static assets
 var staticPath = path.posix.join(publicPath, staticFolder)
-app.use(staticPath, express.static('./static'))
+app.use(staticPath, express.static('./assets'))
 
 var uri = 'http://localhost:' + port
 
