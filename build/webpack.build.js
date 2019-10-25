@@ -10,6 +10,7 @@ const config = require('../config')
 const webpackBaseConfig = require('./webpack.base')
 
 module.exports = merge(webpackBaseConfig, {
+  mode: 'production',
   module: {
     rules: [
       {

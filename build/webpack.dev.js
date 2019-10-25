@@ -8,6 +8,7 @@ const config = require('../config')
 const webpackBaseConfig = require('./webpack.base')
 
 module.exports = merge(webpackBaseConfig, {
+  mode: 'development',
   entry: ['./build/dev-client.js'],
   module: {
     rules: [{
